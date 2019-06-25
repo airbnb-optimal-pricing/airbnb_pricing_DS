@@ -17,7 +17,7 @@ def root():
     """
     return "Test Successful"	
     
-@app.route('/allpredictions', methods=['POST'])
+@app.route('/prediction', methods=['POST'])
 def get_all_predictions():
   """
   Gets predicted price of Airbnb unit given selected inputs.
@@ -36,19 +36,19 @@ def get_all_predictions():
     1. Predicted Price
   """
   data = request.get_json(force=True)
-  try:
-    zipcode = data['zipcode']
-    property_type = data['property_type']
-    room_type = data['room_type']
-    accommodates = data['accommodates']
-    bathrooms = data['bathrooms']
-    bedrooms = data['bedrooms']
-    beds = data['beds']
-    bed_type = data['bed_type']
-    except (KeyError):
-      raise JsonError(description='Key Error: Key missing in the request')
 
-    result = get_prediction()
+  zipcode = data['zipcode']
+  property_type = data['property_type']
+  room_type = data['room_type']
+  accommodates = data['accommodates']
+  bathrooms = data['bathrooms']
+  bedrooms = data['bedrooms']
+  beds = data['beds']
+  bed_type = data['bed_type']
+
+  result = get_prediction(zipcode=zipcode, property_type=property_type, room_type=room_type,
+                          accommodates=accommodates, bathrooms=bathrooms, bedrooms=bedrooms,
+                          beds=beds, bed_type=bed_type)
 
   return json_response(prediction=result)
 
