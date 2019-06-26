@@ -1,13 +1,12 @@
 from flask import Flask, request
 from flask_json import FlaskJSON, JsonError, json_response
 import os
-import psycopg2 as pg
 import requests
-from .predict import get_prediction
+from predict import get_prediction
 
-app = Flask(__name__)
+application = app = Flask(__name__)
 FlaskJSON(app)
-cors = CORS(app)
+#cors = CORS(app)
 
 
 @app.route('/')

@@ -1,22 +1,40 @@
-import pandas as pd 
-import math
+import os 
+import json
 import numpy as np
+import pandas as pd
+import dill as pickle
+import math
+from sklearn.externals import joblib
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import make_pipeline
+import category_encoders as ce
+from sklearn.linear_model import RidgeCV
+
+import warnings
+warnings.filterwarnings("ignore")
+
 
 """ Python file containing predict function """
 
-#def get_prediction(zipcode, property_type, room_type, accommodates=2,
-#                   bathroom=1, bedrooms=1, beds=2, bed_type="Real Bed"):
-#    """ Determines the price of an Airbnb listing """
-#    pass
+with open('./model_v1.pk','rb') as f:
+  model = pickle.load(f)
+with open('./cols.pk','rb') as f:
+  cols = pickle.load(f)
+with open('./num_preprocessor.pk','rb') as f:
+  num_preprocessor = pickle.load(f)
+with open('./cat_preprocessor.pk','rb') as f:
+  cat_preprocessor = pickle.load(f)
+
 
 def get_prediction(zipcode, property_type, room_type, accommodates=2,
-                   bathroom=1, bedrooms=1, beds=2, bed_type="Real Bed"):
+                   bathrooms=1.0, bedrooms=1.0, beds=2.0, bed_type="Real Bed"):
     
     data = {"zipcode" : zipcode,
              "property_type": property_type,
              "room_type" : room_type,
              "accommodates": accommodates,
-             "bathrooms": bathroom,
+             "bathrooms": bathrooms,
              "bedrooms": bedrooms,
              "beds": beds,
              "bed_type": bed_type}
@@ -49,5 +67,7 @@ def get_prediction(zipcode, property_type, room_type, accommodates=2,
     
     y_pred = model.predict(df_model)
     prediction = math.exp(y_pred[0])
-      
+    
     return prediction
+
+#print(get_prediction(zipcode='91304', property_type='Apartment', room_type='Private room', bathrooms=2.0, bedrooms=1.0, beds=2.0, bed_type="Real Bed"))
