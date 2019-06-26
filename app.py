@@ -55,3 +55,4 @@ def get_all_predictions():
 
 if __name__ == '__main__':
     application.run()
+    

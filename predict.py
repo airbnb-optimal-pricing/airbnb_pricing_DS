@@ -1,14 +1,26 @@
-import pandas as import pd 
+import pandas as pd 
+import math
+import numpy as np
 
 """ Python file containing predict function """
 
+#def get_prediction(zipcode, property_type, room_type, accommodates=2,
+#                   bathroom=1, bedrooms=1, beds=2, bed_type="Real Bed"):
+#    """ Determines the price of an Airbnb listing """
+#    pass
+
 def get_prediction(zipcode, property_type, room_type, accommodates=2,
                    bathroom=1, bedrooms=1, beds=2, bed_type="Real Bed"):
-    """ Determines the price of an Airbnb listing """
-
-
-def predict(data):
     
+    data = {"zipcode" : zipcode,
+             "property_type": property_type,
+             "room_type" : room_type,
+             "accommodates": accommodates,
+             "bathrooms": bathroom,
+             "bedrooms": bedrooms,
+             "beds": beds,
+             "bed_type": bed_type}
+
     # Create dataframe from JSON dict
     data = pd.DataFrame.from_dict([data])
     
@@ -36,6 +48,6 @@ def predict(data):
     df_model = df_model.replace(np.nan, 0)
     
     y_pred = model.predict(df_model)
-    y_pred = math.exp(y_pred[0])
+    prediction = math.exp(y_pred[0])
       
     return prediction

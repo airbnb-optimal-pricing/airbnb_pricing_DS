@@ -14,50 +14,75 @@ from sklearn.linear_model import RidgeCV
 import warnings
 warnings.filterwarnings("ignore")
 
+# Import cleaned data
 df = pd.read_csv('flask_ready.csv')
 
+# Seperate features from target variable
 X = df.drop(['total_price', 'price_log'], axis=1)
 y = df['price_log']
 
-def wrangle(df):  
-    num_cols = ['accommodates', 'bathrooms', 'bedrooms', 'beds']
-    cat_cols = ['zipcode', 'property_type', 'room_type','bed_type']
+num_cols = ['accommodates', 'bathrooms', 'bedrooms', 'beds']
+cat_cols = ['zipcode', 'property_type', 'room_type','bed_type']
 
-    df_num = df[num_cols]
-    df_cat = df[cat_cols]
+def transform_data(df):
+  """
+  Creates transformed dataframe with:
+    -One-hot-encoded categorical features
+    -Scaled numerical features
 
-    cat_preprocessor = make_pipeline(ce.OneHotEncoder(use_cat_names=True))
+  Creates list with all column names of transformed dataframe 
+  """  
+  df_num = df[num_cols]
+  df_cat = df[cat_cols]
 
-    num_preprocessor = make_pipeline(StandardScaler())
+  cat_preprocessor = make_pipeline(ce.OneHotEncoder(use_cat_names=True))
 
-    cat_transformed = cat_preprocessor.fit_transform(df_cat)
+  num_preprocessor = make_pipeline(StandardScaler())
 
-    num_transformed = num_preprocessor.fit_transform(df_num)
-    num_transformed = pd.DataFrame(num_transformed, columns=num_cols)
+  cat_transformed = cat_preprocessor.fit_transform(df_cat)
 
-    df = pd.concat((num_transformed, cat_transformed), axis=1)
+  num_transformed = num_preprocessor.fit_transform(df_num)
+  num_transformed = pd.DataFrame(num_transformed, columns=num_cols)
 
-    cols = df.columns
+  df = pd.concat((num_transformed, cat_transformed), axis=1)
 
-    return df, cols
+  cols = df.columns
 
-def fit_model(X, y)
+  return df, cols, num_preprocessor, cat_preprocessor
 
-    reg_params = 10.**np.linspace(-10, 5, 10)
-    model = RidgeCV(alphas=reg_params, fit_intercept=True, cv=5)
-    model.fit(X, y)
+def fit_model(X, y):
+  """
+  Fits model to data
+  """
+  reg_params = 10.**np.linspace(-10, 5, 10)
+  model = RidgeCV(alphas=reg_params, fit_intercept=True, cv=5)
+  model.fit(X, y)
 
-    return model
+  return model
 
 
 if __name__ == '__main__':
-    X, cols = wrangle(X)
-    model = fit_model(X,y)
+  """
+  Pickles model and column list
+  """
+  X, cols, num_preprocessor, cat_preprocessor = transform_data(X)
+  model = fit_model(X,y)
 
-    filename = 'model_v1.pk'
-    with open('../'+filename, 'wb') as file:
-        pickle.dump(model, file)
-        pickle.dump(cols, file)
+  filename_model = 'model_v1.pk'
+  with open('../'+filename_model, 'wb') as file:
+    pickle.dump(model, file)
+    
+  filename_cols = 'cols.pk'
+  with open('../'+filename_cols, 'wb') as file:
+    pickle.dump(cols, file)
+
+  file_name_numpre = 'num_preprocessor.pk'
+  with open('../'+file_name_numpre, 'wb') as file:
+    pickle.dump(num_preprocessor, file)
+
+  file_name_catpre = 'cat_preprocessor.pk'
+  with open('../'+file_name_catpre, 'wb') as file:
+    pickle.dump(cat_preprocessor, file)
 
 
 
