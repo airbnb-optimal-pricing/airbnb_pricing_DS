@@ -2,11 +2,12 @@ from flask import Flask, request
 from flask_json import FlaskJSON, JsonError, json_response
 import os
 import requests
-from predict import get_prediction
+from predict import get_prediction, get_simp_prediction
+from flask_cors import CORS
 
 application = app = Flask(__name__)
 FlaskJSON(app)
-#cors = CORS(app)
+cors = CORS(app)
 
 
 @app.route('/')
@@ -48,6 +49,29 @@ def get_all_predictions():
   result = get_prediction(zipcode=zipcode, property_type=property_type, room_type=room_type,
                           accommodates=accommodates, bathrooms=bathrooms, bedrooms=bedrooms,
                           beds=beds, bed_type=bed_type)
+
+  return json_response(prediction=result)
+
+@app.route('/simpleprediction', methods=['POST'])
+def get_simple_prediction():
+  """
+  Gets predicted price of Airbnb unit given selected inputs.
+
+  Inputs:
+    1. Zipcode
+    2. Property Type
+    3. Room Type
+  
+  Outputs:
+    1. Predicted Price
+  """
+  data = request.get_json(force=True)
+
+  zipcode = data['zipcode']
+  bathrooms = data['bathrooms']
+  bedrooms = data['bedrooms']
+
+  result = get_simp_prediction(zipcode=zipcode, bathrooms=bathrooms, bedrooms=bedrooms)
 
   return json_response(prediction=result)
 
