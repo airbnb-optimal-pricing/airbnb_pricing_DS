@@ -37,7 +37,6 @@ def transform_data(df, num_cols, cat_cols):
 
   Creates list with all column names of transformed dataframe 
   """  
-  print(df.head())
   df_num = df[num_cols]
 
   if len(cat_cols) == 1:
