@@ -1,11 +1,11 @@
 from flask import Flask, request
 from flask_json import FlaskJSON, JsonError, json_response
 import os
-import psycopg2 as pg
 import requests
-from .predict import get_prediction
+from predict import get_prediction, get_simp_prediction
+from flask_cors import CORS
 
-app = Flask(__name__)
+application = app = Flask(__name__)
 FlaskJSON(app)
 cors = CORS(app)
 
@@ -52,6 +52,30 @@ def get_all_predictions():
 
   return json_response(prediction=result)
 
+@app.route('/simpleprediction', methods=['POST'])
+def get_simple_prediction():
+  """
+  Gets predicted price of Airbnb unit given selected inputs.
+
+  Inputs:
+    1. Zipcode
+    2. Property Type
+    3. Room Type
+  
+  Outputs:
+    1. Predicted Price
+  """
+  data = request.get_json(force=True)
+
+  zipcode = data['zipcode']
+  bathrooms = data['bathrooms']
+  bedrooms = data['bedrooms']
+
+  result = get_simp_prediction(zipcode=zipcode, bathrooms=bathrooms, bedrooms=bedrooms)
+
+  return json_response(prediction=result)
+
 
 if __name__ == '__main__':
     application.run()
+    
