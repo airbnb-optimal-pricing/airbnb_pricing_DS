@@ -21,7 +21,7 @@ class RecurringThread(Thread):
         self.stopped = event
 
     def run(self):
-        POOL_TIME = 3600  # Seconds
+        POOL_TIME = 86400  # Seconds
         while not self.stopped.wait(POOL_TIME):
             # call load function
             load_model()
