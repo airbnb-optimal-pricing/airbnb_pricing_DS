@@ -75,3 +75,6 @@ def data_cleaning():
     df.to_csv('data-clean.csv', index=False)
 
     print("Info: Data Cleaning completed ...")
+
+if __name__ == '__main__':
+    data_cleaning()

@@ -137,3 +137,4 @@ def data_retrieval():
     print(f"Info: Shape of dataframe after merging: {df.shape}")
 
     print(f"Info: Data Retrieval completed ...")
+

@@ -12,6 +12,7 @@ from data_retrieval import data_retrieval
 from data_cleaning import data_cleaning
 from training import training
 from predict import load_pickle_files, get_prediction
+from plot import zip_list
 
 
 class RecurringThread(Thread):
@@ -98,7 +99,9 @@ def get_all_predictions():
                                 beds=beds,
                                 bed_type=bed_type)
 
-    return json_response(prediction=result)
+        plot = zip_list(zipcode=zipcode)
+
+    return json_response(prediction=result, plot=plot)
 
 
 if __name__ == '__main__':
