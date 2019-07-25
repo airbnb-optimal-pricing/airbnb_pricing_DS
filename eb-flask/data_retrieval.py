@@ -138,3 +138,6 @@ def data_retrieval():
 
     print(f"Info: Data Retrieval completed ...")
 
+if __name__ == '__main__':
+    data_retrieval()
+

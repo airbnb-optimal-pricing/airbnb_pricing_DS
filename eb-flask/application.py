@@ -6,6 +6,7 @@ from flask_cors import CORS
 # from flask_swagger_ui import get_swaggerui_blueprint
 from threading import Thread, Event, Lock
 import atexit
+import json
 
 # Inner imports
 from data_retrieval import data_retrieval
@@ -99,10 +100,14 @@ def get_all_predictions():
                                 beds=beds,
                                 bed_type=bed_type)
 
-        plot = zip_list(zipcode=zipcode)
 
-    return json_response(prediction=result, plot=plot)
+        plot_values, bins = zip_list(zipcode=zipcode)
 
+        plot_values = [int(i) for i in plot_values]
+
+    return json_response(prediction=result,
+                         plot_valuess=plot_values,
+                         bins=bins)
 
 if __name__ == '__main__':
 
@@ -111,7 +116,12 @@ if __name__ == '__main__':
     dataLock = Lock()
 
     # Load model
-    load_model()
+    #load_model()
+
+
+    # TEMPORARY --------------------
+    with dataLock:
+        load_pickle_files()
 
     # Start thread
     stopFlag = Event()
