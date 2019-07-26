@@ -7,3 +7,13 @@
 # Ignore CSV and pk files
 *.pk
 *.csv
+
+# Ignore virtual environment
+virt/*
+
+# 
+__pycache__/
+.ebignore
+.vscode/*
+.gitignore
+.ipynb_checkpoints/*

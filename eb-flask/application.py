@@ -33,6 +33,9 @@ application = app = Flask(__name__)
 FlaskJSON(app)
 cors = CORS(app)
 
+# Lock to control access to variable
+dataLock = Lock()
+
 
 # Data loading and training sequence
 def load_model():
@@ -106,14 +109,14 @@ def get_all_predictions():
         plot_values = [int(i) for i in plot_values]
 
     return json_response(prediction=result,
-                         plot_valuess=plot_values,
+                         plot_values=plot_values,
                          bins=bins)
 
 if __name__ == '__main__':
 
     # Threading related
     # Lock to control access to variable
-    dataLock = Lock()
+    #dataLock = Lock()
 
     # Load model
     #load_model()

@@ -1,6 +1,6 @@
 import pandas as pd 
 import numpy as np
-import shap
+#import shap
 import os
 import dill as pickle
 
@@ -17,6 +17,7 @@ def zip_list (zipcode):
 
     return bin_counts, bins
 
+"""
 def shap_list():
 
   with open('./model_v1.pk', 'rb') as f:
@@ -31,6 +32,8 @@ def shap_list():
   shap_values = explainer.shap_values(X)
 
   return shap_values
+
+"""
 
 
 

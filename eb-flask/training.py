@@ -80,7 +80,7 @@ def training():
     # Pickles model,column list, and data preprocessors
     # Premium Model
     X, cols, num_preprocessor, cat_preprocessor = \
-        transform_data(X, num_cols=num_cols, cat_cols=cat_cols)
+        transform_data(df=X, num_cols=num_cols, cat_cols=cat_cols)
     model = fit_model(X, y)
 
     # Remove old data if present
