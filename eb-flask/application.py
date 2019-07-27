@@ -1,12 +1,9 @@
 from flask import Flask, request
-from flask_json import FlaskJSON, JsonError, json_response
-import os
-import requests
+from flask_json import FlaskJSON, json_response
 from flask_cors import CORS
 # from flask_swagger_ui import get_swaggerui_blueprint
 from threading import Thread, Event, Lock
 import atexit
-import json
 
 # Inner imports
 from data_retrieval import data_retrieval
@@ -29,14 +26,6 @@ class RecurringThread(Thread):
             load_model()
 
 
-application = app = Flask(__name__)
-FlaskJSON(app)
-cors = CORS(app)
-
-# Lock to control access to variable
-dataLock = Lock()
-
-
 # Data loading and training sequence
 def load_model():
     data_retrieval()
@@ -49,6 +38,30 @@ def load_model():
 # Stop thread at exit
 def interrupt():
     stopFlag.set()
+
+
+application = app = Flask(__name__)
+FlaskJSON(app)
+cors = CORS(app)
+
+# Threading related
+# Lock to control access to variable
+dataLock = Lock()
+
+# TEMPORARY --------------------
+# Load model
+# load_model()
+with dataLock:
+    load_pickle_files()
+
+# Start thread
+stopFlag = Event()
+load_thread = RecurringThread(stopFlag)
+load_thread.start()
+
+# When you kill Flask (SIGTERM), clear the trigger for the next thread
+atexit.register(interrupt)
+
 
 # ----------- Swagger ------------ #
 # @app.route('/static/<path:path>')
@@ -103,7 +116,6 @@ def get_all_predictions():
                                 beds=beds,
                                 bed_type=bed_type)
 
-
         plot_values, bins = zip_list(zipcode=zipcode)
 
         plot_values = [int(i) for i in plot_values]
@@ -112,26 +124,6 @@ def get_all_predictions():
                          plot_values=plot_values,
                          bins=bins)
 
+
 if __name__ == '__main__':
-
-    # Threading related
-    # Lock to control access to variable
-    #dataLock = Lock()
-
-    # Load model
-    #load_model()
-
-
-    # TEMPORARY --------------------
-    with dataLock:
-        load_pickle_files()
-
-    # Start thread
-    stopFlag = Event()
-    load_thread = RecurringThread(stopFlag)
-    load_thread.start()
-
-    # When you kill Flask (SIGTERM), clear the trigger for the next thread
-    atexit.register(interrupt)
-
-    application.run()
+    application.run(debug=True)
