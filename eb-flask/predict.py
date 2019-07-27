@@ -1,5 +1,3 @@
-import os 
-import json
 import numpy as np
 import pandas as pd
 import dill as pickle
@@ -13,7 +11,6 @@ from sklearn.linear_model import RidgeCV
 
 import warnings
 warnings.filterwarnings("ignore")
-
 
 model = None
 cols = None
