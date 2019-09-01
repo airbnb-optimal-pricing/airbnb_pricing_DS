@@ -110,3 +110,6 @@ venv.bak/
 
 # Virtual environment
 eb-flask/virt
+
+# Vscode 
+.vscode
