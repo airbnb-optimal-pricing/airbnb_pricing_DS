@@ -45,4 +45,4 @@ Prediction function used for incoming data.
 Returns array containing number of units for a given dollar range in a users inputted zip code. Data is displayed via plotly graph on front end. 
 
 ### application
-Flask API Logic. Can be set to reinitialize 
+Flask API Logic. Can be set to reinitialize via the POOL_TIME variable.
