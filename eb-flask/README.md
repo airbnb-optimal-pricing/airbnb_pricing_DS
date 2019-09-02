@@ -7,7 +7,7 @@ Web scraper that extracts all the U.S. data at [insideairbnb.com](http://insidea
 Data cleaning file for zip code and price columns.
 
 ### training
-Model traning file on cleaned data. After testing a multitude of models, a simple ridge regression model minimized our median squared error to an acceptable level. Reference our model [training notebooks](https://github.com/airbnb-optimal-pricing/airbnb_pricing_DS/tree/master/notebooks/Modeling) for a more in depth analysis.
+Model traning file on cleaned data. After testing a multitude of models, a simple ridge regression model minimized our median squared error to an acceptable level. Reference our [modeling](https://github.com/airbnb-optimal-pricing/airbnb_pricing_DS/tree/master/notebooks/Modeling) for a more in depth analysis.
 
 ### predict
 
