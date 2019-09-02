@@ -5,9 +5,9 @@ Clone the repo:<br>
 ```cd eb-flask```
 
 Create virtualenv:<br>
-```vertualenv virt```
-```source virt/bin/activate```
-```pip install -r requirements.txt```
+```vertualenv virt``` <br>
+```source virt/bin/activate``` <br>
+```pip install -r requirements.txt``` 
 
 Run the server locally <br>
 ```python application.py```
@@ -45,4 +45,4 @@ Prediction function used for incoming data.
 Returns array containing number of units for a given dollar range in a users inputted zip code. Data is displayed via plotly graph on front end. 
 
 ### application
-Flask API Logic.
+Flask API Logic. Can be set to reinitialize 
