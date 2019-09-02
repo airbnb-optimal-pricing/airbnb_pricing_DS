@@ -1,7 +1,7 @@
 # Flask API
 ## Usage
 Clone the repo:<br>
-```git clone https://github.com/airbnb-optimal-pricing/airbnb_pricing_DS```
+```git clone https://github.com/airbnb-optimal-pricing/airbnb_pricing_DS``` <br>
 ```cd eb-flask```
 
 Create virtualenv:<br>
