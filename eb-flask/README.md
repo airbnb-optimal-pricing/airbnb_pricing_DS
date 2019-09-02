@@ -1,5 +1,29 @@
 # Flask API
+## Usage
+Clone the repo:
+    git clone https://github.com/airbnb-optimal-pricing/airbnb_pricing_DS/tree/master/eb-flask
+    cd eb-flask
 
+Create virtualenv:
+    vertualenv virt
+    source virt/bin/activate
+    pip install -r requirements.txt
+
+Run the server locally
+    python.application.py
+
+Try the endpoints:
+    curl -XPOST -H "Content-Type: application/json" http://localhost:5000/prediction -d '{"zipcode": "90210",
+                                                                                          "property_type": "Villa",
+                                                                                          "room_type" : "Private room",
+                                                                                          "accommodates": 5,
+                                                                                          "bathrooms": 12,
+                                                                                          "bedrooms": 2,
+                                                                                          "beds": 2,
+                                                                                          "bed_type": "Real Bed"
+                                                                                          }'
+
+## Files
 ### data_retrieval
 Web scraper that extracts all the U.S. data at [insideairbnb.com](http://insideairbnb.com/get-the-data.html). Data is consolidated into a pandas dataframe and reduced to contain the columns with highest feature importances.
 
