@@ -1,19 +1,20 @@
 # Flask API
 ## Usage
-Clone the repo:
-    ```git clone https://github.com/airbnb-optimal-pricing/airbnb_pricing_DS/tree/master/eb-flask
-    cd eb-flask```
+Clone the repo:<br>
+```git clone https://github.com/airbnb-optimal-pricing/airbnb_pricing_DS/tree/master/eb-flask 
+cd eb-flask```
 
-Create virtualenv:
+Create virtualenv:<br>
 ``` vertualenv virt
     source virt/bin/activate
-    pip install -r requirements.txt```
+    pip install -r requirements.txt
+```
 
-Run the server locally
-    ```python.application.py```
+Run the server locally <br>
+```python application.py```
 
-Try the endpoints:
-    ```curl -XPOST -H "Content-Type: application/json" http://localhost:5000/prediction -d '{"zipcode": "90210",
+Try the endpoints:  <br>
+```curl -XPOST -H "Content-Type: application/json" http://localhost:5000/prediction -d '{"zipcode": "90210",
                                                                                           "property_type": "Villa",
                                                                                           "room_type" : "Private room",
                                                                                           "accommodates": 5,
@@ -21,7 +22,8 @@ Try the endpoints:
                                                                                           "bedrooms": 2,
                                                                                           "beds": 2,
                                                                                           "bed_type": "Real Bed"
-                                                                                          }'```
+                                                                                          }'
+```
 
 ## Files
 ### data_retrieval
