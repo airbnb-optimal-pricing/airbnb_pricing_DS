@@ -14,6 +14,7 @@ Run the server locally <br>
 
 Try the endpoints:  <br>
 ```Post Request```
+```http://127.0.0.1:5000/fetch_data/prediction```
 ```
 {
 	"zipcode": "90210",
@@ -39,10 +40,10 @@ Data cleaning file for zip code and price columns.
 Model traning file on cleaned data. After testing a multitude of models, a simple ridge regression model minimized our median squared error to an acceptable level. Reference our [modeling notebooks](https://github.com/airbnb-optimal-pricing/airbnb_pricing_DS/tree/master/notebooks/Modeling) for a more in depth analysis.
 
 ### predict
-Prediction function used for incoming data.
+Prediction algorithm for incoming data.
 
 ### plot
 Returns array containing number of units for a given dollar range in a users inputted zip code. Data is displayed via plotly graph on front end. 
 
 ### application
-Flask API Logic. Time based reinitialization can be set via the POOL_TIME variable.
+Flask API Logic. Recurrent time-based reinitialization can be set via the POOL_TIME variable. 
