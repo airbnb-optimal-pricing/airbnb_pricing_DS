@@ -28,6 +28,8 @@ Try the endpoints:  <br>
 }
 ```
 
+![](../pictures/request.png)
+
 
 ## Files
 ### data_retrieval.py
