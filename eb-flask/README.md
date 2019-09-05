@@ -15,7 +15,6 @@ Run the server locally <br>
 Try the endpoints:  <br>
 ```Post Request```
 ```http://127.0.0.1:5000/prediction```
-```
 
 Sample request and response:
 
