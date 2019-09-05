@@ -14,7 +14,7 @@ Run the server locally <br>
 
 Try the endpoints:  <br>
 ```Post Request```
-```http://127.0.0.1:5000/fetch_data/prediction```
+```http://127.0.0.1:5000/prediction```
 ```
 {
 	"zipcode": "90210",
