@@ -19,6 +19,7 @@ Try the endpoints:  <br>
 Sample request and response:
 
 ![](../pictures/request.png)
+
 ![](../pictures/response.png)
 
 
