@@ -15,18 +15,12 @@ Run the server locally <br>
 Try the endpoints:  <br>
 ```Post Request```
 ```http://127.0.0.1:5000/prediction```
-```
-{
-	"zipcode": "90210",
-	"property_type": "Villa",
-	"room_type" : "Private room",
-	"accommodates": 5,
-	"bathrooms": 12,
-	"bedrooms": 2,
-	"beds": 2,
-	"bed_type": "Real Bed"
-}
-```
+
+Sample request and response:
+
+![](../pictures/request.png)
+
+![](../pictures/response.png)
 
 
 ## Files
