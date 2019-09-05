@@ -47,11 +47,8 @@ cors = CORS(app)
 # Lock to control access to variable
 dataLock = Lock()
 
-# TEMPORARY --------------------
-# Load model
-# load_model()
-with dataLock:
-    load_pickle_files()
+# Initial run of load_model
+load_model()
 
 # Start thread
 stopFlag = Event()
@@ -87,6 +84,8 @@ def get_all_predictions():
 
     Outputs:
         1. Predicted Price
+        2. Dollar value bins
+        3. Amount of units from the requested zip code in each bin
     """
     data = request.get_json(force=True)
 
@@ -119,4 +118,4 @@ def get_all_predictions():
 
 
 if __name__ == '__main__':
-    application.run(debug=True)
+    application.run(use_reloader=False)
