@@ -30,20 +30,20 @@ Try the endpoints:  <br>
 
 
 ## Files
-### data_retrieval
+### data_retrieval.py
 Web scraper that extracts all the U.S. data at [insideairbnb.com](http://insideairbnb.com/get-the-data.html). Data is consolidated into a pandas dataframe and reduced to contain the columns with highest feature importances.
 
-### data_cleaning
+### data_cleaning.py
 Data cleaning file for zip code and price columns.
 
-### training
+### training.py
 Model traning file on cleaned data. After testing a multitude of models, a simple ridge regression model minimized our median squared error to an acceptable level. Reference our [modeling notebooks](https://github.com/airbnb-optimal-pricing/airbnb_pricing_DS/tree/master/notebooks/Modeling) for a more in depth analysis.
 
-### predict
+### predict.py
 Prediction algorithm for incoming data.
 
-### plot
+### plot.py
 Returns array containing number of units for a given dollar range in a users inputted zip code. Data is displayed via plotly graph on front end. 
 
-### application
+### application.py
 Flask API Logic. Recurrent time-based reinitialization can be set via the POOL_TIME variable. 
