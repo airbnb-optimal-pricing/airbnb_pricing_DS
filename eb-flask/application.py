@@ -1,7 +1,6 @@
 from flask import Flask, request
 from flask_json import FlaskJSON, json_response
 from flask_cors import CORS
-# from flask_swagger_ui import get_swaggerui_blueprint
 from threading import Thread, Event, Lock
 import atexit
 
@@ -61,12 +60,6 @@ load_thread.start()
 
 # When you kill Flask (SIGTERM), clear the trigger for the next thread
 atexit.register(interrupt)
-
-
-# ----------- Swagger ------------ #
-# @app.route('/static/<path:path>')
-# def send_static(path):
-#     return send_from_directory('static', path)
 
 # ----------- Test Route ----------- #
 @app.route('/')
