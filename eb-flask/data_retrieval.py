@@ -85,7 +85,7 @@ def download_dataframe(city_data):
 
         # Unzip and load the file to data frame.
         with gzip.open(file_name) as f:
-            df = pd.read_csv(f)
+            df = pd.read_csv(f, error_bad_lines=False)
 
             print(f"Info: Shape of data within {file_name}: {df.shape}")
 
