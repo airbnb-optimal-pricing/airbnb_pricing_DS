@@ -90,7 +90,7 @@ def download_dataframe(city_data):
             chunk_list = []  # append each chunk df here 
 
                 # Each chunk is in df format
-            for chunk in df_chunk:  
+            for chunk in df:  
                 
                 chunk_list.append(chunk)
                 
