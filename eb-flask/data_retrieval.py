@@ -85,7 +85,18 @@ def download_dataframe(city_data):
 
         # Unzip and load the file to data frame.
         with gzip.open(file_name) as f:
-            df = pd.read_csv(f, error_bad_lines=False)
+            df = pd.read_csv(f, error_bad_lines=False, chunksize=85)
+
+            chunk_list = []  # append each chunk df here 
+
+                # Each chunk is in df format
+            for chunk in df_chunk:  
+                
+                chunk_list.append(chunk)
+                
+            # concat the list into dataframe 
+            df = pd.concat(chunk_list)
+
 
             print(f"Info: Shape of data within {file_name}: {df.shape}")
 
