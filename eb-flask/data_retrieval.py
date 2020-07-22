@@ -85,7 +85,7 @@ def download_dataframe(city_data):
 
         # Unzip and load the file to data frame.
         with gzip.open(file_name) as f:
-            df = pd.read_csv(f, error_bad_lines=False, chunksize=85)
+            df = pd.read_csv(f, error_bad_lines=False, chunksize=1000)
 
             chunk_list = []  # append each chunk df here 
 
